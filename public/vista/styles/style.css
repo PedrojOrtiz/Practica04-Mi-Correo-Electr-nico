@@ -1,0 +1,9 @@
+.error {
+    color: red;
+    font-size: 8px;
+}
+
+.menu {
+    width: 50%;
+    border: 1px solid blue;
+}
