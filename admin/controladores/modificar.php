@@ -33,18 +33,17 @@
         $nNombres = isset($_POST["nombres"]) ? mb_strtoupper(trim($_POST["nombres"]), 'UTF-8') : null; 
         $nApellidos = isset($_POST["apellidos"]) ? mb_strtoupper(trim($_POST["apellidos"]), 'UTF-8') : null;        
         $nCorreo = isset($_POST["correo"]) ? trim($_POST["correo"]): null;
-        $nContrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]): null;
+        //$nContrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]): null;
         $nRol = isset($_POST["rol"]) ? trim($_POST["rol"]): null;
-        $nEliminado = isset($_POST["eliminado"]) ? trim($_POST["contrasena"]): null;
+        $nEliminado = isset($_POST["eliminado"]) ? trim($_POST["eliminado"]): null;
             
         $sql2 = "UPDATE usuario SET usu_nombres = '$nNombres',
-                                    usu_apellidos = '$nApellidos',
-                                    usu_correo = '$nCorreo',
-                                    usu_password = MD5('$nContrasena'),
+                                    usu_apellidos = '$nApellidos', 
+                                    usu_correo = '$nCorreo';                                
                                     usu_rol = '$nRol',
-                                    usu_eliminado = $nEliminado;
-                                    usu_fecha_modificacion = SYSDATE() 
-                                WHERE usu_id = $id";
+                                    usu_eliminado = '$nEliminado',
+                                    usu_fecha_modificacion = SYSDATE()
+                                WHERE usu_id = $idUsuario";
     
         if ($conn->query($sql2) === TRUE) {             
             echo "Modificado Correctamente";                  
