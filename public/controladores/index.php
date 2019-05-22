@@ -3,11 +3,12 @@
     include '../../config/conexionBD.php';
 
     session_start();
-    if(isset($_SESSION['rol']) != 'user')
-        header("Location: ../vista/login.html");
 
     if (isset($_SESSION['id']))
         $id=$_SESSION['id'];
+
+    if($_SESSION["rol"] != "user")
+        header("Location: logout.php");
 
     $sqlUsuario = "SELECT * FROM usuario WHERE usu_id=$id";
 
@@ -83,7 +84,7 @@
 
             if ($resultMsg->num_rows > 0) { 
 
-                $sqlMsg = "SELECT * FROM mensaje WHERE usuario_usu_id_para = $id ORDER BY men_fecha DESC"; 
+                $sqlMsg = "SELECT * FROM mensaje WHERE usuario_usu_id_para = $id AND men_eliminado = 0 ORDER BY men_fecha DESC"; 
                 $resultMsg = $conn->query($sqlMsg);
 
                 

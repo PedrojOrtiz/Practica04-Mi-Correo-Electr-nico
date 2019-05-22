@@ -3,11 +3,12 @@
     include '../../config/conexionBD.php';
 
     session_start();
-    if(isset($_SESSION['rol']) != 'user')
-        header("Location: ../vista/login.html");
 
     if (isset($_SESSION['id']))
         $id=$_SESSION['id'];
+
+    if($_SESSION["rol"] != "user")
+        header("Location: logout.php");
 
     $sqlUsuario = "SELECT * FROM usuario WHERE usu_id=$id";
 

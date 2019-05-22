@@ -3,11 +3,12 @@
     include '../../config/conexionBD.php';
 
     session_start();
-    if(isset($_SESSION['rol']) != 'user')
-        header("Location: ../vista/login.html");
 
     if (isset($_SESSION['id']))
         $id=$_SESSION['id'];
+
+    if($_SESSION["rol"] != "user")
+        header("Location: logout.php");
 
     $rem = $_GET['remitente'];
  
@@ -33,7 +34,7 @@
             echo "</tr>";
         echo "</thead>";
 
-        $sqlMsg = "SELECT * FROM mensaje WHERE usuario_usu_id_para = $id AND usuario_usu_id_de = $idRem  ORDER BY men_fecha DESC"; 
+        $sqlMsg = "SELECT * FROM mensaje WHERE usuario_usu_id_para = $id AND usuario_usu_id_de = $idRem AND men_eliminado = 0 ORDER BY men_fecha DESC"; 
         $resultMsg = $conn->query($sqlMsg);
    
         while($row = $resultMsg->fetch_assoc()) {   

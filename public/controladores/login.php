@@ -37,17 +37,17 @@
 
         if ($result->num_rows > 0 && $admin->num_rows > 0) {  
             session_start();
-            $user = $user->fetch_assoc(); 
+            //$user = $user->fetch_assoc(); 
             $_SESSION['id']=$id;             
             $_SESSION['isLogged'] = TRUE; 
-            $_SESSION['rol'] = 'admin';     
-            header("Location: ../../admin/vista/index.php"); 
+            $_SESSION["rol"] = "admin";     
+            header("Location: ../../admin/controladores/index.php"); 
         } else if ($result->num_rows > 0 && $user->num_rows > 0) {
             session_start();
-            $user = $user->fetch_assoc(); 
+            //$user = $user->fetch_assoc(); 
             $_SESSION['id']=$id;             
             $_SESSION['isLogged'] = TRUE;
-            $_SESSION['rol'] = 'user';    
+            $_SESSION["rol"] = "user";    
             header("Location: index.php");
         } else { 
             header("Location: ../vista/login.html");

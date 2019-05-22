@@ -7,10 +7,12 @@
     if (isset($_SESSION['id']))
         $id=$_SESSION['id'];
 
-    if($_SESSION["rol"] != "user")
+    if($_SESSION["rol"] != "admin")
         header("Location: logout.php");
 
-    $sqlUsuario = "SELECT * FROM usuario WHERE usu_id=$id";
+    $idUsuario = $_REQUEST['id'];
+
+    $sqlUsuario = "SELECT * FROM usuario WHERE usu_id=$idUsuario";
 
     $resultUsuario=$conn->query($sqlUsuario);
     $rowUsuario= mysqli_fetch_assoc($resultUsuario);
@@ -19,6 +21,8 @@
     $apellidos=$rowUsuario['usu_apellidos'];
     $foto=$rowUsuario['usu_foto_perfil'];
     $correo=$rowUsuario['usu_correo'];
+    $eliminado=$rowUsuario['usu_eliminado'];
+    $rol=$rowUsuario['usu_rol'];
 
     if (!empty($_POST)) {
 
@@ -28,11 +32,17 @@
 
         $nNombres = isset($_POST["nombres"]) ? mb_strtoupper(trim($_POST["nombres"]), 'UTF-8') : null; 
         $nApellidos = isset($_POST["apellidos"]) ? mb_strtoupper(trim($_POST["apellidos"]), 'UTF-8') : null;        
-        $nCorreo = isset($_POST["correo"]) ? trim($_POST["correo"]): null; 
+        $nCorreo = isset($_POST["correo"]) ? trim($_POST["correo"]): null;
+        $nContrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]): null;
+        $nRol = isset($_POST["rol"]) ? trim($_POST["rol"]): null;
+        $nEliminado = isset($_POST["eliminado"]) ? trim($_POST["contrasena"]): null;
             
         $sql2 = "UPDATE usuario SET usu_nombres = '$nNombres',
                                     usu_apellidos = '$nApellidos',
                                     usu_correo = '$nCorreo',
+                                    usu_password = MD5('$nContrasena'),
+                                    usu_rol = '$nRol',
+                                    usu_eliminado = $nEliminado;
                                     usu_fecha_modificacion = SYSDATE() 
                                 WHERE usu_id = $id";
     
@@ -55,18 +65,16 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="../js/validacion.js"></script>
     <title>Correo: <?php echo $nombres ?> <?php echo $apellidos ?> </title> 
-    <link rel="stylesheet" href="../vista/styles/style.css" type="text/css"/>  
+    <link rel="stylesheet" href="../../public/vista/styles/style.css" type="text/css"/>  
 </head> 
 <body> 
  
-    <table class="menu" style="width:50%"> 
+    <table class="menu"> 
 
         <tr> 
             <th><a href="index.php">Inicio</a></th>  
-            <th><a href="nuevo.php">Nuevo Mensaje</a></th> 
-            <th><a href="enviados.php">Mensajes Enviados</a></th>
-            <th><a href="perfil.php">Mi Cuenta</a></th>
-            <th><a href="logout.php">Cerrar Sesión</a></th>             
+            <th><a href="usuarios.php">Usuarios</a></th>
+            <th><a href="../../public/controladores/logout.php">Cerrar Sesión</a></th>             
         </tr>
 
     </table>
@@ -95,6 +103,18 @@
  
                 <label for="correo">Correo electrónico:</label> 
                 <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>" placeholder="Ingrese su correo electrónico ..."> 
+                <br>
+
+                <label for="contrasena">Contrasena:</label> 
+                <input type="password" id="contrasena" name="contrasena" value="" placeholder="*****"> 
+                <br>
+
+                <label for="rol">rol:</label> 
+                <input type="text" id="rol" name="rol" value="<?php echo $rol; ?>" placeholder="user o admin..."> 
+                <br>
+
+                <label for="eliminado">Eliminado:</label> 
+                <input type="number" id="eliminado" name="eliminado" value="<?php echo $eliminado; ?>" placeholder="0 o 1..."> 
                 <br>
  
                 <input type="hidden" name="idusuario" value="<?php echo $id; ?>">
