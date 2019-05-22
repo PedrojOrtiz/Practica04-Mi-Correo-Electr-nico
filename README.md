@@ -9,8 +9,9 @@ He adjuntado las capturas de como he estructurado mi código en mis archivos:
 
 # User:
 
-![1](https://github.com/PedrojOrtiz/Practica04-Mi-Correo-Electr-nico/blob/master/fotosInforme/2019-05-22%20(1).png (1).png)
-![2](https://github.com/PedrojOrtiz/Practica04-Mi-Correo-Electr-nico/blob/master/fotosInforme/2019-05-22%(2).png)
+![1](https://github.com/PedrojOrtiz/Practica04-Mi-Correo-Electr-nico/blob/master/fotosInforme/2019-05-22%20(1).png)
+
+![2](https://github.com/PedrojOrtiz/Practica04-Mi-Correo-Electr-nico/blob/master/fotosInforme/2019-05-22%20(2).png)
 ![3](https://github.com/PedrojOrtiz/Practica04-Mi-Correo-Electr-nico/blob/master/fotosInforme/2019-05-22 (3).png)
 ![4](https://github.com/PedrojOrtiz/Practica04-Mi-Correo-Electr-nico/blob/master/fotosInforme/2019-05-22 (4).png)
 ![5](https://github.com/PedrojOrtiz/Practica04-Mi-Correo-Electr-nico/blob/master/fotosInforme/2019-05-22 (5).png)
