@@ -11,15 +11,15 @@
 
     <a href='login.html'>Tienes ya una cuenta? ir a Iniciar Sesion</a>
 
-    <form id="nuevo_usuario" method="POST" onsubmit="return validarCamposObligatorios()" action="../controladores/crear_usuario.php"  >
+    <form id="nuevo_usuario" method="POST" onsubmit="return validarCamposObligatorios()" action="../controladores/crear_usuario.php" enctype="multipart/form-data" >
  
         <label for="nombres">Nombres (*)</label> 
-        <input type="text" id="nombres" name="nombres" value="" placeholder="Ingrese sus dos nombres...">
+        <input type="text" id="nombres" name="nombres" value="" placeholder="Ingrese sus dos nombres..." onkeyup="return validarLetras()">
         <span id="mensajeNombres" class="error"> </span>
         <br> 
  
         <label for="apellidos">Apelidos (*)</label> 
-        <input type="text" id="apellidos" name="apellidos" value="" placeholder="Ingrese sus dos apellidos..." >
+        <input type="text" id="apellidos" name="apellidos" value="" placeholder="Ingrese sus dos apellidos..." onkeyup="return validarLetras()">
         <span id="mensajeApellidos" class="error"> </span>
         <br>
  
@@ -33,10 +33,11 @@
         <span id="mensajeContrasena" class="error"> </span>
         <br>
 
-        <label for="avatar">Avatar - Foto de perfil</label> 
-        <input type="file" id="avatar" name="avatar" value="" placeholder="Foto" > 
+        <label for="foto">Avatar - Foto de perfil</label> 
+        <input type="file" id="foto" name="foto" value="" placeholder="foto" > 
         <br> 
  
+        <!--
         <label for="rol">Tipo de usuario (*):</label>
         <br>
         <span id="mensajeRol" class="error"> </span>
@@ -44,6 +45,7 @@
         <input  type="radio" id="admin" name="rol" value="admin"> Usuario Administrador <br>
         <input  type="radio" id="user" name="rol" value="user"> Usuario Ordinario <br>
         <br>
+        -->
 
         <input type="submit" id="crear" name="crear" value="Aceptar" /> 
         <input type="reset" id="cancelar" name="cancelar" value="Cancelar" />     

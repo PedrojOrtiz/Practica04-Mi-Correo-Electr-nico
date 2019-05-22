@@ -14,10 +14,15 @@
         $apellidos = isset($_POST["apellidos"]) ? mb_strtoupper(trim($_POST["apellidos"]), 'UTF-8') : null;         
         $correo = isset($_POST["correo"]) ? trim($_POST["correo"]): null;         
         $contrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]) : null;
-        //$avatar
-        $rol = $_POST["rol"];
+
+        $fotoNombre = $_FILES["foto"]["name"];
+        $fotoRuta = $_FILES["foto"]["tmp_name"];
+        $fotoDestino = "../../fotos/".$fotoNombre;
+        copy($fotoRuta,$fotoDestino);
+
+        $rol = "user";
                 
-        $sql = "INSERT INTO usuario VALUES (0, '$nombres', '$apellidos', '$correo', MD5('$contrasena'), '$rol', 0, null, null, null)";         
+        $sql = "INSERT INTO usuario VALUES (0, '$nombres', '$apellidos', '$correo', MD5('$contrasena'), '$rol', 0, null, null, '$fotoDestino')";         
  
         if ($conn->query($sql) === TRUE) {             
             echo "<p>Se ha creado los datos personales correctamemte!!!</p>";      
