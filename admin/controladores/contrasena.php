@@ -42,7 +42,7 @@
 
         $nContrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]): null;
             
-        $sql2 = "UPDATE usuario SET usu_passwor = MD5('$nContrasena') WHERE usu_id = $idUsuario";
+        $sql2 = "UPDATE usuario SET usu_password = MD5('$nContrasena') WHERE usu_id = $idUsuario";
     
         if ($conn->query($sql2) === TRUE) {             
             echo "Modificado Correctamente";                  
