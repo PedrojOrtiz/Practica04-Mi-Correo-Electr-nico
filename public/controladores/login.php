@@ -29,8 +29,9 @@
     $id = $rowUsuario['usu_id'];
     $eliminado = $rowUsuario['usu_eliminado'];
 
-    if ($eliminado == 1) {
+    if ($eliminado == '1') {
 
+        
         echo "<p>Has sido eliminado por los administradores </p>";
 
     } else {
