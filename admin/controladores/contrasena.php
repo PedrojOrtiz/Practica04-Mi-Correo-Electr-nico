@@ -40,20 +40,9 @@
             header("location: index.php");
         }
 
-        $nNombres = isset($_POST["nombres"]) ? mb_strtoupper(trim($_POST["nombres"]), 'UTF-8') : null; 
-        $nApellidos = isset($_POST["apellidos"]) ? mb_strtoupper(trim($_POST["apellidos"]), 'UTF-8') : null;        
-        $nCorreo = isset($_POST["correo"]) ? trim($_POST["correo"]): null;
-        //$nContrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]): null;
-        $nRol = isset($_POST["rol"]) ? trim($_POST["rol"]): null;
-        $nEliminado = isset($_POST["eliminado"]) ? trim($_POST["eliminado"]): null;
+        $nContrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]): null;
             
-        $sql2 = "UPDATE usuario SET usu_nombres = '$nNombres',
-                                    usu_apellidos = '$nApellidos', 
-                                    usu_correo = '$nCorreo';                                
-                                    usu_rol = '$nRol',
-                                    usu_eliminado = '$nEliminado',
-                                    usu_fecha_modificacion = SYSDATE()
-                                WHERE usu_id = $idUsuario";
+        $sql2 = "UPDATE usuario SET usu_passwor = MD5('$nContrasena') WHERE usu_id = $idUsuario";
     
         if ($conn->query($sql2) === TRUE) {             
             echo "Modificado Correctamente";                  
@@ -99,35 +88,18 @@
         <h2 class="center"> Modificar: </h2>
 
         <div class="center">
-            <form id="formulario01" method="POST" onsubmit="return validarCamposObligatorios()" action=""> 
+            <form id="formulario01" method="POST" action=""> 
 
                 <img id="fusu" src="<?php echo $foto ?>">
                 <br>
                 <br>
 
-                <label for="nombres">Nombres:</label> 
-                <input type="text" id="nombres" name="nombres" value="<?php echo $nombres; ?>" placeholder="Ingrese sus dos nombres ..."> 
-                <br> 
- 
-                <label for="apellidos">Apelidos:</label> 
-                <input type="text" id="apellidos" name="apellidos" value="<?php echo $apellidos; ?>" placeholder="Ingrese sus dos apellidos..." > 
-                <br>             
- 
-                <label for="correo">Correo electrónico:</label> 
-                <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>" placeholder="Ingrese su correo electrónico ..."> 
-                <br>
-
-                <label for="rol">rol:</label> 
-                <input type="text" id="rol" name="rol" value="<?php echo $rol; ?>" placeholder="user o admin..."> 
-                <br>
-
-                <label for="eliminado">Eliminado:</label> 
-                <input type="number" id="eliminado" name="eliminado" value="<?php echo $eliminado; ?>" placeholder="0 o 1..."> 
+                <label for="contrasena">Nueva Contraseña:</label> 
+                <input type="password" id="contrasena" name="contrasena" value="" placeholder="Ingrese sus dos nombres ..."> 
                 <br>
  
                 <input type="hidden" name="idusuario" value="<?php echo $id; ?>">
                 <input type="submit" value="Modificar" >
-                <a href="contrasena.php?id=<?php echo $idUsuario ?>"> Cambiar Contraseña </a>
 
         </form>     
         </div>
