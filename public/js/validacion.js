@@ -1,37 +1,30 @@
 function validarCamposObligatorios() {
 
-    var bandera = false
+    var bandera = false;
     for (var i = 0; i < document.forms[0].length; i++) {
         var elemento = document.forms[0].elements[i];
         if (elemento.value.trim() == '') {
+            bandera = true;
             if(elemento.id == 'nombres') {
-                bandera = true
-                elemento.style.border = "1px red solid"
-                document.getElementById("mensajeNombres").innerHTML = ('nombre obligatorio')
+                elemento.style.border = "1px red solid";
+                document.getElementById("mensajeNombres").innerHTML = ('nombre obligatorio');
             } else if(elemento.id == 'apellidos') {
-                bandera = true
-                elemento.style.border = "1px red solid"
-                document.getElementById("mensajeApellidos").innerHTML = ('apellido obligatorio')
+                elemento.style.border = "1px red solid";
+                document.getElementById("mensajeApellidos").innerHTML = ('apellido obligatorio');
             } else if(elemento.id == 'correo') {
-                bandera = true
-                elemento.style.border = "1px red solid"
-                document.getElementById("mensajeCorreo").innerHTML = ('correo obligatorio')
+                elemento.style.border = "1px red solid";
+                document.getElementById("mensajeCorreo").innerHTML = ('correo obligatorio');
             } else if(elemento.id == 'contrasena') {
-                bandera = true
-                elemento.style.border = "1px red solid"
-                document.getElementById("mensajeContrasena").innerHTML = ('contraseña obligatoria')
-            } else {
-                var bandera = false
+                elemento.style.border = "1px red solid";
+                document.getElementById("mensajeContrasena").innerHTML = ('contraseña obligatoria');
             }
-        } else {
-            var bandera = false
         }
     }
     if (bandera) {
-        alert('Llenar todos los campos correctamente')
-        return false
+        alert('Llenar todos los campos correctamente');
+        return false;
     } else {
-        return true
+        return true;
     }
     
 }

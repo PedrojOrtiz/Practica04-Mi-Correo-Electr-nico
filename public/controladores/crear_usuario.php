@@ -28,7 +28,7 @@
             echo "<p>Se ha creado los datos personales correctamemte!!!</p>";      
         } else {             
             if($conn->errno == 1062){                 
-                echo "<p class='error'>La persona con la cedula $cedula ya esta registrada en el sistema </p>";
+                echo "<p class='error'>No ha sido posible crear el usuario</p>";
             }else{                 
                 echo "<p class='error'>Error: " . mysqli_error($conn) . "</p>"; 
             }             
